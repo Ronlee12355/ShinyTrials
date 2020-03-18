@@ -2,12 +2,24 @@ library(shiny)
 library(plotly)
 
 get_numeric_variable <- function(dt){
-  return(colnames(dplyr::select_if(get(dt), is.numeric)))
+  return(colnames(dplyr::select_if(dt, is.numeric)))
 }
 
 shinyServer(function(input, output){
   varis <- reactive({
-    get_numeric_variable(input$data1)
+    switch (input$data1,
+      'i' = get_numeric_variable(iris),
+      't' = get_numeric_variable(trees),
+      'T' = get_numeric_variable(ToothGrowth)
+    )
+  })
+  
+  dt <- reactive({
+    switch (input$data1,
+            'i' = iris,
+            't' = trees,
+            'T' = ToothGrowth
+    )
   })
   
   output$vx <- renderUI({
@@ -19,7 +31,7 @@ shinyServer(function(input, output){
   })
   
   output$p <- renderPlotly({
-     p<-ggplot(get(input$data1), aes(x=get(input$data1)[[input$x]], y=get(input$data1)[[input$y]]))+
+     p<-ggplot(dt(), aes(x=dt()[[input$x]], y=dt()[[input$y]]))+
        geom_point()+labs(x=input$x, y=input$y)
      ggplotly(p)
   })
