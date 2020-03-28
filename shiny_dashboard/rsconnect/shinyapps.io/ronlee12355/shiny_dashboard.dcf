@@ -1,0 +1,12 @@
+name: shiny_dashboard
+title: shiny_dashboard
+username:
+account: ronlee12355
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 2011423
+bundleId: 2935815
+url: https://ronlee12355.shinyapps.io/shiny_dashboard/
+when: 1585393739.02302
+asMultiple: FALSE
+asStatic: FALSE

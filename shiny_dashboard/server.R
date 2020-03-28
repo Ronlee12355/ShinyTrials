@@ -7,11 +7,15 @@ shinyServer(function(input,output, session){
   })
   
   output$dt_iris <- DT::renderDataTable({
-    DT::datatable(iris)
+    DT::datatable(iris, rownames = F)
   })
   
   output$scatter_iris <- renderPlot({
     car::scatterplotMatrix(iris)
+  })
+  
+  output$str_iris <- renderPrint({
+    str(iris)
   })
   
   output$bar_plot <- renderPlotly({
