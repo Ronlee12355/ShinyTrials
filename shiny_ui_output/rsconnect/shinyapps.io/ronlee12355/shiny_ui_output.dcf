@@ -1,0 +1,12 @@
+name: shiny_ui_output
+title: shiny_ui_output
+username:
+account: ronlee12355
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 1973464
+bundleId: 2904396
+url: https://ronlee12355.shinyapps.io/shiny_ui_output/
+when: 1584764013.91242
+asMultiple: FALSE
+asStatic: FALSE

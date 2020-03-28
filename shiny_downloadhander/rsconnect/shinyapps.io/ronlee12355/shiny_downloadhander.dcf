@@ -1,0 +1,12 @@
+name: shiny_downloadhander
+title: shiny_downloadhander
+username:
+account: ronlee12355
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 1973457
+bundleId: 2904383
+url: https://ronlee12355.shinyapps.io/shiny_downloadhander/
+when: 1584763664.79611
+asMultiple: FALSE
+asStatic: FALSE
