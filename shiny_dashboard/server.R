@@ -1,5 +1,6 @@
 library(shiny)
 library(plotly)
+library(rlang)
 
 shinyServer(function(input,output, session){
   output$sum_iris <- renderPrint({
@@ -19,13 +20,13 @@ shinyServer(function(input,output, session){
   })
   
   output$bar_plot <- renderPlotly({
-    p <- ggplot(mtcars, aes(mtcars[[input$vari]]))+geom_histogram(fill="red",bins = 10)+
+    p <- ggplot(mtcars, aes(x=!!sym(input$vari)))+geom_histogram(fill="red",bins = 10)+
       labs(x=input$vari)+theme_bw()
     ggplotly(p)
   })
   
   output$line_plot <- renderPlotly({
-    p <- ggplot(mtcars, aes(x=wt, y=mtcars[[input$vari]]))+
+    p <- ggplot(mtcars, aes(x=wt, y=!!sym(input$vari)))+
       geom_point(color="blue")+labs(x='wt', y=input$vari)+theme_classic()
     ggplotly(p)
   })
