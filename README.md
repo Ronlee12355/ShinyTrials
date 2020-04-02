@@ -2,6 +2,8 @@
 
 Shiny is a new package from RStudio that makes it incredibly easy to build interactive web applications with R.   
 
+[shinydashboard](https://rstudio.github.io/shinydashboard/) makes it easy to use Shiny to create dashboards.   
+
 This repo contains all shiny apps that I practice for bioinformatics field.   
 If you need more solid shiny demos and showcases, [Shiny](http://shiny.rstudio.com) official website on rstudio or the [Shiny on GitHub](https://github.com/rstudio/shiny) would be helpful.  
 
@@ -23,3 +25,4 @@ devtools::install_github('rstudio/shinydashborad')
 3. [Download Hander Demo With Update Functions Family](https://github.com/Ronlee12355/ShinyTrials/tree/master/shiny_downloadhander)
 4. [Shiny Dashborad Creation with shinydashboard package](https://github.com/Ronlee12355/ShinyTrials/tree/master/shiny_dashboard)
 5. [Shiny Dashboard With Brushed Feature and InfoBox](https://github.com/Ronlee12355/ShinyTrials/tree/master/shiny_infoBox_brushed)
+6. [Shiny Models and Input Validation](https://github.com/Ronlee12355/ShinyTrials/tree/master/shiny_model)
