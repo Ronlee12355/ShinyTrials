@@ -4,7 +4,7 @@ shinyUI(fluidPage(
   # header title
   titlePanel('First try of shiny app, only for form elements'),
   br(),
-  
+  shinythemes::themeSelector(),
   wellPanel(
     dateInput('date', 'Date Choose: ', startview = 'month', language = 'zh-CN'),
     sliderInput('num', 'Choose a number: ', min = 0, max = 100, value = 30),

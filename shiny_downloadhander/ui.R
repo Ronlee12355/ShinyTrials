@@ -3,6 +3,7 @@ library(shiny)
 shinyUI(fluidPage(
   titlePanel('Download Hander Demo With Update Functions Family'),
   br(),
+  shinythemes::themeSelector(),
   sidebarLayout(
     sidebarPanel(
       selectInput('data1', "Choose the data set to download", 

@@ -31,7 +31,7 @@ shinyServer(function(input, output){
   })
   
   output$p <- renderPlotly({
-     p<-ggplot(dt(), aes(x=dt()[[input$x]], y=dt()[[input$y]]))+
+     p<-ggplot(dt(), aes_string(x=input$x, y=input$y))+
        geom_point()+labs(x=input$x, y=input$y)
      ggplotly(p)
   })

@@ -3,7 +3,7 @@ library(shiny)
 shinyUI(fluidPage(
   titlePanel('The dynamic renderUI and interactive plots with plotly'),
   br(),
-  
+  shinythemes::themeSelector(),
   sidebarLayout(
     sidebarPanel(
       selectInput('data1', 'Choose a dataset: ', choices = c('i','T','t'), selected = 'i'),
