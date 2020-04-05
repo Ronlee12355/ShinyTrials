@@ -1,0 +1,14 @@
+body {padding-top: 60px;}
+.red{
+  color: red;
+  font-size:1.5em;
+  font-weight:bold;
+}
+
+.bold{
+  font-weight:bold;
+}
+
+.center{
+  text-align: center;
+}
