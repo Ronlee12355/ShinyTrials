@@ -1,31 +1,53 @@
 # ShinyTrials
 
-Shiny is a new package from RStudio that makes it incredibly easy to build interactive web applications with R.   
+A collection of small Shiny applications written while learning how to build
+interactive web apps for bioinformatics and data analysis work. Each folder is a
+self-contained app built around one or two ideas — a layout, an input widget, a
+rendering function, a dashboard component, or a validation pattern.
 
-[shinydashboard](https://rstudio.github.io/shinydashboard/) makes it easy to use Shiny to create dashboards.   
+These are learning exercises, not polished products. For production-quality
+examples, the [official Shiny site](http://shiny.rstudio.com) and the
+[rstudio/shiny](https://github.com/rstudio/shiny) repository are better starting
+points.
 
-This repo contains all shiny apps that I practice for bioinformatics field.   
-If you need more solid shiny demos and showcases, [Shiny](http://shiny.rstudio.com) official website on rstudio or the [Shiny on GitHub](https://github.com/rstudio/shiny) would be helpful.  
+## Getting started
 
-All shiny apps can be downloaded and run locally, but the installion of package shiny and shinydashboard is needed. To install shiny and shinydashboard:    
+Every app needs the `shiny` package, and a few need extra packages for
+dashboards, themes, or interactive graphics:
 
+```r
+install.packages(c(
+  "shiny",        # core
+  "shinydashboard", "shinythemes", "shinyjs", "shinyBS",  # UI / theming
+  "ggplot2", "plotly", "DT", "dplyr", "rlang", "stringr", "GGally", "car"
+))
 ```
-# install from the CRAN
-install.package('shiny')
-install.package('shinydashboard')
 
-## install the dev version from GitHub
-devtools::install_github('rstudio/shiny')
-devtools::install_github('rstudio/shinydashborad')
+To run an app locally, either open its `ui.R` or `server.R` in RStudio and click
+**Run App**, or from the console:
+
+```r
+shiny::runApp("shiny_layouts")
 ```
 
-## Contents List
-1. [HTML form table elements in Shiny](https://github.com/Ronlee12355/ShinyTrials/tree/master/shiny_form_table)   
-2. [Dynamic UI and interactive output with plotly](https://github.com/Ronlee12355/ShinyTrials/tree/master/shiny_ui_output)
-3. [Download Hander Demo With Update Functions Family](https://github.com/Ronlee12355/ShinyTrials/tree/master/shiny_downloadhander)
-4. [Shiny Dashborad Creation with shinydashboard package](https://github.com/Ronlee12355/ShinyTrials/tree/master/shiny_dashboard)
-5. [Shiny Dashboard With Brushed Feature and InfoBox](https://github.com/Ronlee12355/ShinyTrials/tree/master/shiny_infoBox_brushed)
-6. [Shiny Models and Input Validation](https://github.com/Ronlee12355/ShinyTrials/tree/master/shiny_model)
-7. [Shiny Navigation Page](https://github.com/Ronlee12355/ShinyTrials/tree/master/shiny_naviBar)
-8. [Shiny Layouts Demonstrations](https://github.com/Ronlee12355/ShinyTrials/tree/master/shiny_layouts)
-9. [Shiny ReactiveValue and imageOutput](https://github.com/Ronlee12355/ShinyTrials/tree/master/shiny_reactive_value_image_output)
+## Apps
+
+| Folder | What it demonstrates |
+| --- | --- |
+| [`shiny_form_table`](shiny_form_table/) | A tour of the form-style inputs: `dateInput`, `sliderInput`, `radioButtons`, `selectInput`, `textInput`, `passwordInput` and `fileInput`. A `conditionalPanel` reveals a second radio group when "Female" is selected, and `splitLayout` places the name and password fields side by side. Values are collected into a table only after the submit button fires, using `observeEvent` to defer the render. |
+| [`shiny_ui_output`](shiny_ui_output/) | Server-driven UI. The dataset selector (`iris`, `trees`, `ToothGrowth`) rebuilds both variable dropdowns through `renderUI`, and the Y dropdown excludes whatever is already chosen for X. The scatter plot is drawn with ggplot2 and handed to plotly for interactivity. |
+| [`shiny_downloadhander`](shiny_downloadhander/) | Downloading results with `downloadHandler`. Users pick the table and plot export formats (CSV/TXT, PNG/PDF/JPEG), and the filename is generated from the current dataset. Also shows `updateNumericInput` reacting to a dataset change, a `tabsetPanel`, and CSS injected with `tags$style` to restyle the download buttons. |
+| [`shiny_dashboard`](shiny_dashboard/) | A shinydashboard layout: `menuItem` navigation, colored `box`es with headers and status, and a `tabBox` grouping summary, data review, scatter matrix and pairwise plots of `iris`. Plots and tables are interactive via plotly and DT, driven by a `selectInput` over the `mtcars` columns. |
+| [`shiny_infoBox_brushed`](shiny_infoBox_brushed/) | Dashboard chrome — message, notification and task dropdown menus in the header, plus a search form in the sidebar. In the body, `infoBox`es report the dimensions of the selected dataset, `brushedPoints` captures a brushed region of a scatter plot, and `nearPoints` captures a clicked point in a boxplot. |
+| [`shiny_model`](shiny_model/) | Form validation and modal dialogs. `validate`/`need` reject empty names, malformed emails, overlong passwords and out-of-range text before the table renders. Uploading a CSV reveals a previously hidden div, whose buttons open `bsModal` dialogs for the plot and the data table. |
+| [`shiny_layouts`](shiny_layouts/) | A `navlistPanel` that walks through four container layouts side by side: `sidebarLayout`, `splitLayout` with custom cell widths, `verticalLayout` and `flowLayout`. |
+| [`shiny_naviBar`](shiny_naviBar/) | A `navbarPage` with fixed positioning and tabs for home, download, search and contact — a mock-up of a university admission portal login page, styled with a small custom CSS file in `www/`. |
+| [`shiny_reactive_value_image_output`](shiny_reactive_value_image_output/) | Storing state across clicks with `reactiveValues` (two independent counters), and serving a PNG written to disk through `renderImage` rather than `renderPlot`. Generates the histogram with `png()`/`dev.off()` and returns the file path. |
+
+## Other files
+
+- `shiny.pdf` — the Shiny cheat sheet, kept for quick reference.
+- `shiny_reactive_value_image_output/tempfile/` — output directory used by the
+  image-output app. The path is currently hard-coded in its `server.R`, so it
+  needs updating before the app will run outside this repository's original
+  location.
