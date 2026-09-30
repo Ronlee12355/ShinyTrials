@@ -1,7 +1,4 @@
 ------------------------------------------------------------------------
-
-editor_options: markdown: wrap: 72 ---
-
 <table>
 <tr>
 <td valign="middle" width="170">
